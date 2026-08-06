@@ -1,0 +1,232 @@
+import React, { useState, useEffect } from 'react';
+import { Phone, MapPin, Star, Clock, Menu, X, ChevronRight, CheckCircle, Navigation } from 'lucide-react';
+
+const MrSubmarineWebsite = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Business Logic: Live Open/Closed Status
+  useEffect(() => {
+    const checkStatus = () => {
+      const now = new Date();
+      const hour = now.getHours();
+      // Assuming 10 AM - 8 PM for logic purposes
+      setIsOpen(hour >= 10 && hour < 20);
+    };
+    checkStatus();
+  }, []);
+
+  const menuData = [
+    { name: "Italian", s6: 6.19, s12: 9.70, xtra: 11.75 },
+    { name: "Ham", s6: 6.19, s12: 9.70, xtra: 11.75 },
+    { name: "Italian Salami", s6: 6.19, s12: 9.70, xtra: 11.75 },
+    { name: "Ham/Turkey", s6: 7.19, s12: 11.70, xtra: null },
+    { name: "Turkey", s6: 6.29, s12: 9.95, xtra: 11.95 },
+    { name: "Pizza Sub", s6: 6.39, s12: 10.05, xtra: 12.05 },
+    { name: "Cheese", s6: 6.19, s12: 9.50, xtra: 11.50 },
+    { name: "Roast Beef", s6: 6.49, s12: 10.15, xtra: 12.15 },
+    { name: "Corned Beef", s6: 6.49, s12: 10.15, xtra: 12.15 },
+    { name: "Pastrami", s6: 6.49, s12: 10.15, xtra: 12.15 },
+    { name: "Meatball", s6: 6.29, s12: 9.99, xtra: 11.95 },
+    { name: "Tuna", s6: 6.29, s12: 9.99, xtra: 11.95 },
+    { name: "Club (RB/Ham/Turk)", s6: 8.19, s12: 10.75, xtra: 11.95 },
+    { name: "BLT", s6: 5.99, s12: 9.99, xtra: null },
+    { name: "Grilled Chicken", s6: 7.29, s12: 11.55, xtra: null },
+    { name: "Chicken Marinara", s6: 7.59, s12: 11.70, xtra: null },
+  ];
+
+  return (
+    <div className="min-h-screen bg-[#FDF5E6] text-slate-900 font-sans">
+      {/* Sticky Top Bar (Desktop) */}
+      <div className="hidden md:block bg-[#991B1B] text-white py-2 px-6 text-sm text-center">
+        <p>📍 3306 N 24th St, Phoenix, AZ • <a href="tel:6029566219" className="font-bold underline underline-offset-4">Call Now: (602) 956-6219</a></p>
+      </div>
+
+      {/* Navigation */}
+      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm px-6 py-4 flex justify-between items-center">
+        <div className="flex flex-col">
+          <span className="text-2xl font-black tracking-tighter text-[#991B1B]">MR. SUBMARINE</span>
+          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-slate-500">Phoenix, Arizona</span>
+        </div>
+        
+        <div className="hidden md:flex gap-8 font-semibold text-sm uppercase tracking-wide">
+          <a href="#menu" className="hover:text-[#991B1B]">Full Menu</a>
+          <a href="#about" className="hover:text-[#991B1B]">Our Story</a>
+          <a href="#contact" className="hover:text-[#991B1B]">Location</a>
+        </div>
+
+        <a href="tel:6029566219" className="bg-[#EAB308] hover:bg-yellow-500 text-black px-5 py-2 rounded-full font-bold text-sm transition-all flex items-center gap-2">
+          <Phone size={16} /> CALL TO ORDER
+        </a>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="relative bg-slate-900 text-white py-20 px-6 overflow-hidden">
+        <div className="absolute inset-0 opacity-40 bg-[url('https://images.unsplash.com/photo-1553909489-cd47e0907980?auto=format&fit=crop&q=80&w=1200')] bg-cover bg-center"></div>
+        <div className="relative max-w-4xl mx-auto text-center">
+          <span className="inline-block bg-[#EAB308] text-black font-bold px-3 py-1 rounded text-xs uppercase mb-4">Quality Since 1975</span>
+          <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">Freshly Sliced. <br/><span className="text-[#EAB308]">Locally Loved.</span></h1>
+          <p className="text-xl mb-10 text-slate-200 max-w-2xl mx-auto">Phoenix’s favorite owner-operated deli. Artisan bread, premium meats, and the freshest toppings in the valley.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#menu" className="bg-[#991B1B] hover:bg-red-700 px-8 py-4 rounded-lg font-bold text-lg transition-all">View Full Menu</a>
+            <a href="#order-form" className="bg-white text-slate-900 hover:bg-slate-100 px-8 py-4 rounded-lg font-bold text-lg transition-all">Order Inquiry</a>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust Bar */}
+      <section className="bg-white border-b py-8 px-6">
+        <div className="max-w-6xl mx-auto flex flex-wrap justify-around items-center gap-6">
+          <div className="flex items-center gap-3">
+            <div className="flex text-[#EAB308]"><Star fill="currentColor"/><Star fill="currentColor"/><Star fill="currentColor"/><Star fill="currentColor"/><Star fill="currentColor" className="opacity-50"/></div>
+            <span className="font-bold">4.4 Rating (295 Reviews)</span>
+          </div>
+          <div className="flex items-center gap-2 text-green-700 font-semibold">
+            <CheckCircle size={20} /> Fresh Bread Daily
+          </div>
+          <div className="flex items-center gap-2 text-green-700 font-semibold">
+            <CheckCircle size={20} /> Local Owner-Operated
+          </div>
+        </div>
+      </section>
+
+      {/* Menu Section */}
+      <section id="menu" className="py-20 px-4 max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-black text-[#991B1B] mb-4">OUR SUB MENU</h2>
+          <p className="text-slate-600">Served on your choice of Fresh White or Wheat Bread.</p>
+          <div className="mt-4 flex flex-wrap justify-center gap-2 text-sm font-bold text-[#166534]">
+            <span className="bg-green-50 px-3 py-1 rounded-full border border-green-200">Cheese</span>
+            <span className="bg-green-50 px-3 py-1 rounded-full border border-green-200">Lettuce</span>
+            <span className="bg-green-50 px-3 py-1 rounded-full border border-green-200">Tomatoes</span>
+            <span className="bg-green-50 px-3 py-1 rounded-full border border-green-200">Onions</span>
+            <span className="bg-green-50 px-3 py-1 rounded-full border border-green-200">Pickles</span>
+            <span className="bg-green-50 px-3 py-1 rounded-full border border-green-200">Olives</span>
+          </div>
+        </div>
+
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl">
+          <table className="w-full text-left">
+            <thead className="bg-slate-50 border-b border-slate-200 uppercase text-xs font-black text-slate-500 tracking-widest">
+              <tr>
+                <th className="px-6 py-4">Our Legendary Subs</th>
+                <th className="px-6 py-4 text-center">6 Inch</th>
+                <th className="px-6 py-4 text-center">12 Inch</th>
+                <th className="px-6 py-4 text-center bg-red-50 text-[#991B1B]">12" Xtra Super</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {menuData.map((item, idx) => (
+                <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                  <td className="px-6 py-4 font-bold text-lg">{item.name}</td>
+                  <td className="px-6 py-4 text-center font-medium">${item.s6.toFixed(2)}</td>
+                  <td className="px-6 py-4 text-center font-medium">${item.s12.toFixed(2)}</td>
+                  <td className="px-6 py-4 text-center font-bold text-[#991B1B] bg-red-50/30">
+                    {item.xtra ? `$${item.xtra.toFixed(2)}` : '—'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Mobile List View */}
+        <div className="md:hidden space-y-4">
+          {menuData.map((item, idx) => (
+            <div key={idx} className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+              <h3 className="text-xl font-black mb-3">{item.name}</h3>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="text-center p-2 bg-slate-50 rounded">
+                  <p className="text-[10px] uppercase font-bold text-slate-400">6"</p>
+                  <p className="font-bold">${item.s6.toFixed(2)}</p>
+                </div>
+                <div className="text-center p-2 bg-slate-50 rounded">
+                  <p className="text-[10px] uppercase font-bold text-slate-400">12"</p>
+                  <p className="font-bold">${item.s12.toFixed(2)}</p>
+                </div>
+                <div className={`text-center p-2 rounded ${item.xtra ? 'bg-red-50 text-[#991B1B]' : 'bg-slate-50 text-slate-300'}`}>
+                  <p className="text-[10px] uppercase font-bold">Super</p>
+                  <p className="font-bold">{item.xtra ? `$${item.xtra.toFixed(2)}` : '—'}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Goodies Grid */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {[
+            { n: "Cookies", p: 0.99 }, { n: "Whole Pickle", p: 1.99 },
+            { n: "Peppers", p: 0.69 }, { n: "Xtra Cheese", p: 0.69 },
+            { n: "Chips", p: 1.49 }, { n: "Bacon", p: 1.99 }
+          ].map((g, i) => (
+            <div key={i} className="bg-white border p-4 rounded text-center">
+              <p className="text-xs uppercase font-bold text-slate-400">{g.n}</p>
+              <p className="font-bold text-[#166534]">${g.p.toFixed(2)}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Location & Hours Section */}
+      <section id="contact" className="bg-white py-20 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          <div className="rounded-2xl overflow-hidden shadow-2xl h-96 bg-slate-200 relative">
+             {/* Map Placeholder */}
+             <div className="absolute inset-0 bg-slate-300 flex items-center justify-center text-slate-500">
+                [ Google Map Embed: 3306 N 24th St ]
+             </div>
+          </div>
+          <div>
+            <h2 className="text-4xl font-black mb-6">VISIT US IN PHOENIX</h2>
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <div className="bg-[#991B1B] p-3 rounded-full text-white h-fit"><MapPin size={24}/></div>
+                <div>
+                  <h4 className="font-bold text-xl text-[#991B1B]">Address</h4>
+                  <p className="text-slate-600 text-lg">3306 N 24th St, Phoenix, AZ 85016<br/>(Shops at 24th Street)</p>
+                  <a href="https://maps.google.com" className="text-blue-600 font-bold hover:underline flex items-center gap-1 mt-2">
+                    <Navigation size={16}/> Get Directions
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="bg-[#EAB308] p-3 rounded-full text-black h-fit"><Clock size={24}/></div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <h4 className="font-bold text-xl">Store Hours</h4>
+                    <span className={`px-2 py-0.5 rounded text-xs font-black uppercase ${isOpen ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                      {isOpen ? 'Open Now' : 'Closed'}
+                    </span>
+                  </div>
+                  <p className="text-slate-600">Mon–Sat: 10:00 AM – 8:00 PM</p>
+                  <p className="text-slate-600">Sun: 11:00 AM – 6:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Sticky Mobile Footer CTA */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t p-3 grid grid-cols-2 gap-3 z-[100] shadow-[0_-4px_10px_rgba(0,0,0,0.1)]">
+        <a href="tel:6029566219" className="bg-[#991B1B] text-white flex items-center justify-center gap-2 py-3 rounded-lg font-bold text-sm">
+          <Phone size={18}/> CALL NOW
+        </a>
+        <a href="#order-form" className="bg-[#EAB308] text-black flex items-center justify-center gap-2 py-3 rounded-lg font-bold text-sm">
+          ORDER ONLINE
+        </a>
+      </div>
+
+      <footer className="bg-slate-900 text-slate-400 py-12 px-6 text-center pb-24 md:pb-12">
+        <p className="text-white font-bold mb-2">MR. SUBMARINE PHOENIX</p>
+        <p>© 2024 Mr Submarine. All rights reserved.</p>
+        <p className="text-xs mt-4 opacity-50 uppercase tracking-widest">Freshness is our standard.</p>
+      </footer>
+    </div>
+  );
+};
+
+export default MrSubmarineWebsite;
